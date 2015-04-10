@@ -17,7 +17,7 @@ var gulp = require('gulp'),
     prompt = require ('gulp-prompt'),
     concat = require('gulp-concat'),
     server = require('gulp-server-livereload');
- 
+
 var env,
     coffeeSources,
     jsSources,
@@ -177,28 +177,27 @@ gulp.task('init', function(){
 });
 
 gulp.task('add', function(){
-  gulp.src('./*')
+  gulp.src([ '!node_modules/', './*' ])
   .pipe(git.add());
 });
 
 // Commit files
 gulp.task('committest', function(){
-  gulp.src('./*', {buffer:false})
+  gulp.src([ '!node_modules/', './*' ], {buffer:false})
   .pipe(git.commit('test commit'));
 });
 
 //git commit task with gulp prompt
 gulp.task('commit', function(){
-    var message;
-    gulp.src('./*', {buffer:false})
+    gulp.src('package.json')
     .pipe(prompt.prompt({
         type: 'input',
         name: 'commit',
         message: 'Please enter commit message...'
     },  function(res){
-        message = res.commit;
-    }))
-    .pipe(git.commit(message));
+      return gulp.src([ '!node_modules/', './*' ], {buffer:false})
+      .pipe(git.commit(res.commit));
+    }));
 });
 
 
