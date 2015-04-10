@@ -1,0 +1,25 @@
+<html>
+<link rel="stylesheet" type="text/css" href="css/style2.css">
+
+<script src="js/jquery.min.js"></script>
+<script src="js/picturefill.js"></script>
+<script src="js/test2.js"></script>
+<!--loads the smallest image first -->
+
+<section class="container">
+
+<picture>
+	
+	<source srcset="images/imageResize/900.jpg 2x, images/imageResize/900.jpg " media="(min-width: 800px)">
+
+  	<source srcset="images/imageResize/640.jpg 2x, images/imageResize/640.jpg" media="(min-width: 400px)">
+
+	<source srcset="images/imageResize/640.jpg">
+	
+	<img 
+       srcset="images/640.jpg, images/900.jpg 2x"  title="A demonstration using picturefill.js">
+</picture>
+
+</container>
+
+</html>
